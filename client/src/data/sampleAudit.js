@@ -1,0 +1,216 @@
+/**
+ * client/src/data/sampleAudit.js
+ *
+ * Pre-bundled dev sample audit for instant offline UI testing and demo exploration.
+ * Matches shared/sample-audit.json schema.
+ */
+
+export const SAMPLE_AUDIT = {
+  "_comment": "dev sample, not real data",
+  "isDevSample": true,
+  "devSampleNotice": "dev sample, not real data - for development and testing only",
+  "_id": "audit-sample-dev-001",
+  "startUrl": "https://scholarships.gov.in/scheme-portal",
+  "goal": "Test citizen scholarship journey: check age limit, required documents, deadline, and application form link.",
+  "status": "COMPLETED",
+  "createdAt": "2026-10-20T10:00:00.000Z",
+  "completedAt": "2026-10-20T10:02:15.000Z",
+  "rawResult": {
+    "steps": [
+      {
+        "step_key": "eligibility",
+        "status_claimed": "found",
+        "summary": "Candidate must be between 18 and 25 years with annual family income under 2.5 lakh."
+      },
+      {
+        "step_key": "documents",
+        "status_claimed": "partially_found",
+        "summary": "Income certificate and domicile required, but format specification is missing."
+      },
+      {
+        "step_key": "application_steps",
+        "status_claimed": "found",
+        "summary": "Register with mobile number, verify Aadhaar, upload attested certificates, and submit."
+      },
+      {
+        "step_key": "deadline",
+        "status_claimed": "found",
+        "summary": "Application window closes on 15 March 2026."
+      },
+      {
+        "step_key": "next_action",
+        "status_claimed": "not_found",
+        "summary": "Online apply link returns HTTP 404 error."
+      }
+    ],
+    "facts": [
+      {
+        "kind": "age_min",
+        "value": "18",
+        "url": "https://scholarships.gov.in/scheme-portal/guidelines",
+        "verbatim_quote": "Applicants must have completed minimum 18 years of age at the time of application."
+      },
+      {
+        "kind": "age_max",
+        "value": "25",
+        "url": "https://scholarships.gov.in/scheme-portal/guidelines",
+        "verbatim_quote": "The upper age limit is 25 years as of 1st January of the application year."
+      },
+      {
+        "kind": "fee_amount",
+        "value": "0",
+        "url": "https://scholarships.gov.in/scheme-portal/faqs",
+        "verbatim_quote": "No application fee is charged from any category of eligible candidates."
+      },
+      {
+        "kind": "deadline_date",
+        "value": "15/03/2026",
+        "url": "https://scholarships.gov.in/scheme-portal/guidelines",
+        "verbatim_quote": "The last date for online submission of completed application forms is 15/03/2026."
+      },
+      {
+        "kind": "document",
+        "value": "Income Certificate",
+        "url": "https://scholarships.gov.in/scheme-portal/docs",
+        "verbatim_quote": "Recent income certificate issued by the competent Tehsildar is mandatory."
+      }
+    ],
+    "pages_visited": [
+      "https://scholarships.gov.in/scheme-portal",
+      "https://scholarships.gov.in/scheme-portal/guidelines",
+      "https://scholarships.gov.in/scheme-portal/docs",
+      "https://scholarships.gov.in/scheme-portal/faqs"
+    ],
+    "click_path": [
+      "Loaded https://scholarships.gov.in/scheme-portal",
+      "Followed link to Guidelines",
+      "Followed link to Required Documents",
+      "Followed link to FAQs"
+    ],
+    "limitations": null
+  },
+  "findings": [
+    {
+      "id": "find-001",
+      "stepKey": "eligibility",
+      "kind": "age_min",
+      "value": "18",
+      "status": "VERIFIED_FOUND",
+      "sourceUrl": "https://scholarships.gov.in/scheme-portal/guidelines",
+      "evidence": {
+        "url": "https://scholarships.gov.in/scheme-portal/guidelines",
+        "quote": "Applicants must have completed minimum 18 years of age at the time of application.",
+        "status": "SOURCE_MATCHED",
+        "reason": "exact_or_normalized_match",
+        "matchedContext": "... eligibility criteria: applicants must have completed minimum 18 years of age at the time of application. verification required ...",
+        "finalUrl": "https://scholarships.gov.in/scheme-portal/guidelines"
+      }
+    },
+    {
+      "id": "find-002",
+      "stepKey": "eligibility",
+      "kind": "age_max",
+      "value": "25",
+      "status": "VERIFIED_FOUND",
+      "sourceUrl": "https://scholarships.gov.in/scheme-portal/guidelines",
+      "evidence": {
+        "url": "https://scholarships.gov.in/scheme-portal/guidelines",
+        "quote": "The upper age limit is 25 years as of 1st January of the application year.",
+        "status": "SOURCE_MATCHED",
+        "reason": "exact_or_normalized_match",
+        "matchedContext": "... guidelines: the upper age limit is 25 years as of 1st january of the application year. no relaxation ...",
+        "finalUrl": "https://scholarships.gov.in/scheme-portal/guidelines"
+      }
+    },
+    {
+      "id": "find-003",
+      "stepKey": "documents",
+      "kind": "document",
+      "value": "Income Certificate",
+      "status": "VERIFIED_FOUND",
+      "sourceUrl": "https://scholarships.gov.in/scheme-portal/docs",
+      "evidence": {
+        "url": "https://scholarships.gov.in/scheme-portal/docs",
+        "quote": "Recent income certificate issued by the competent Tehsildar is mandatory.",
+        "status": "SOURCE_MATCHED",
+        "reason": "exact_or_normalized_match",
+        "matchedContext": "... required documents: recent income certificate issued by the competent tehsildar is mandatory. submit online ...",
+        "finalUrl": "https://scholarships.gov.in/scheme-portal/docs"
+      }
+    },
+    {
+      "id": "find-004",
+      "stepKey": "deadline",
+      "kind": "deadline_date",
+      "value": "15/03/2026",
+      "status": "VERIFIED_FOUND",
+      "sourceUrl": "https://scholarships.gov.in/scheme-portal/guidelines",
+      "evidence": {
+        "url": "https://scholarships.gov.in/scheme-portal/guidelines",
+        "quote": "The last date for online submission of completed application forms is 15/03/2026.",
+        "status": "SOURCE_MATCHED",
+        "reason": "exact_or_normalized_match",
+        "matchedContext": "... schedule: the last date for online submission of completed application forms is 15/03/2026. portal closes ...",
+        "finalUrl": "https://scholarships.gov.in/scheme-portal/guidelines"
+      }
+    },
+    {
+      "id": "find-005",
+      "stepKey": "next_action",
+      "kind": "next_action_url",
+      "value": "https://scholarships.gov.in/apply-now",
+      "status": "NOT_FOUND_IN_SCOPE",
+      "sourceUrl": "https://scholarships.gov.in/apply-now",
+      "evidence": {
+        "url": "https://scholarships.gov.in/apply-now",
+        "quote": "click here to apply online",
+        "status": "COULD_NOT_VERIFY",
+        "reason": "http_404_not_found",
+        "matchedContext": null,
+        "finalUrl": "https://scholarships.gov.in/apply-now"
+      }
+    }
+  ],
+  "issues": [
+    {
+      "id": "issue-001",
+      "ruleId": "broken_next_step",
+      "title": "Application submission portal link is broken (HTTP 404)",
+      "description": "The primary call-to-action button links to an endpoint returning HTTP 404.",
+      "severity": "error",
+      "findingIds": ["find-005"],
+      "repairSuggestion": "Update the primary CTA destination to the active form URL or display an explicit maintenance banner."
+    },
+    {
+      "id": "issue-002",
+      "ruleId": "scattered_requirements",
+      "title": "Eligibility and document specifications scattered across multiple subpages",
+      "description": "Citizens must navigate to three separate URLs to compile the list of required proofs.",
+      "severity": "warning",
+      "findingIds": ["find-001", "find-003"],
+      "repairSuggestion": "Consolidate all eligibility thresholds and document proofs into a unified summary checklist on the scheme landing page."
+    }
+  ],
+  "pages": [
+    {
+      "url": "https://scholarships.gov.in/scheme-portal",
+      "hash": "b2f4c6e8a0d2f4e6",
+      "charCount": 1820
+    },
+    {
+      "url": "https://scholarships.gov.in/scheme-portal/guidelines",
+      "hash": "c3d5e7f9b1a3c5e7",
+      "charCount": 3410
+    },
+    {
+      "url": "https://scholarships.gov.in/scheme-portal/docs",
+      "hash": "d4e6f8a0c2b4d6f8",
+      "charCount": 1940
+    },
+    {
+      "url": "https://scholarships.gov.in/scheme-portal/faqs",
+      "hash": "e5f7a9b1d3c5e7a9",
+      "charCount": 2180
+    }
+  ]
+};

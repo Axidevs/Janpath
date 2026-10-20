@@ -41,6 +41,14 @@ export function isHostAllowed(rawHost, fixtureHost) {
   const host = normalizeHost(rawHost);
   if (!host) return false;
 
+  // Check fixture host override first (allows configured fixture host such as localhost or 127.0.0.1)
+  if (fixtureHost) {
+    const normFixture = normalizeHost(fixtureHost);
+    if (normFixture && (host === normFixture || host.endsWith(`.${normFixture}`))) {
+      return true;
+    }
+  }
+
   // Reject IPv4 literal
   if (IPV4_REGEX.test(host)) {
     return false;
@@ -49,14 +57,6 @@ export function isHostAllowed(rawHost, fixtureHost) {
   // Reject IPv6 literal
   if (host.startsWith('[') || host.includes(':')) {
     return false;
-  }
-
-  // Check fixture host override first
-  if (fixtureHost) {
-    const normFixture = normalizeHost(fixtureHost);
-    if (normFixture && (host === normFixture || host.endsWith(`.${normFixture}`))) {
-      return true;
-    }
   }
 
   // Reject localhost if not explicitly the fixture host

@@ -36,6 +36,7 @@ export function runAllRules({
   facts = [],
   steps = [],
   pagesText = [],
+  pages = [],
   referenceDate
 }) {
   const issues = [];
@@ -73,6 +74,23 @@ export function runAllRules({
     referenceDate
   });
   issues.push(...deadlineIssues);
+
+  // 5. Broken next step rule across retrieved pages
+  if (Array.isArray(pages)) {
+    for (const page of pages) {
+      if (page && (page.status === 404 || page.status === 410)) {
+        const brokenResult = evaluateNextStepDestination({
+          targetUrl: page.url,
+          httpStatus: page.status,
+          fetchError: page.error,
+          findingId: 'cta'
+        });
+        if (brokenResult?.issue) {
+          issues.push(brokenResult.issue);
+        }
+      }
+    }
+  }
 
   // 5. Deduplicate issues by ID
   const uniqueIssues = [];

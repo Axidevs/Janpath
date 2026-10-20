@@ -230,6 +230,7 @@ export function createRunAuditService(dependencies = {}) {
           facts: verifiedFactsForRules,
           steps: validatedResult.steps,
           pagesText: allPagesText,
+          pages: pageRecords,
           referenceDate: options.referenceDate
         });
 
