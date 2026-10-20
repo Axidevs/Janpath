@@ -2,14 +2,14 @@
 
 ## Current Status & Summary
 - **Mode**: Autonomous Build Mode
-- **Current Phase**: Phase A Completed (Moving to Phase B)
-- **Test Suite Results**: 19 tests passing, 0 failing across 2 test suites (`normalizeText`, `verifyEvidence`).
+- **Current Phase**: Phase B Completed (Moving to Phase C)
+- **Test Suite Results**: 29 tests passing, 0 failing across 5 test suites.
 
 ---
 
 ## Phase Status Checklist
 - [x] **Phase A**: Status model (`shared/constants.js`), normalizer (`server/src/lib/normalize.js`), evidence verifier (`server/src/engine/verifier.js`), and unit tests (`server/test/verifier.test.js`).
-- [ ] **Phase B**: Schemas (`shared/schemas.js` with Zod, `server/src/tinyfish/outputSchema.js` hand-crafted JSON Schema), sample audit data (`shared/sample-audit.json`), and schema tests.
+- [x] **Phase B**: Schemas (`shared/schemas.js` with Zod, `server/src/tinyfish/outputSchema.js` hand-crafted JSON Schema), sample audit data (`shared/sample-audit.json`), and schema tests (`server/test/schemas.test.js`).
 - [ ] **Phase C**: Deterministic rules engine (`server/src/engine/rules/*`, `compare.js`) with positive/negative/uncertain unit tests.
 - [ ] **Phase D**: Backend foundation (config, urlGuard, in-memory limiter, Mongoose models, Express app & routes, route/guard tests).
 - [ ] **Phase E**: TinyFish clients & orchestration (agentClient, fetchClient, goal generator, runAudit service with mock injection for tests).
@@ -26,9 +26,9 @@ npm --prefix server test
 ```
 *Current real output:*
 ```
-ℹ tests 19
-ℹ suites 2
-ℹ pass 19
+ℹ tests 29
+ℹ suites 5
+ℹ pass 29
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
