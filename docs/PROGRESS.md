@@ -2,8 +2,8 @@
 
 ## Current Status & Summary
 - **Mode**: Autonomous Build Mode
-- **Current Phase**: Phase E Completed (Moving to Phase F)
-- **Test Suite Results**: 88 tests passing, 0 failing across 22 test suites.
+- **Current Phase**: Phase 1 Backend Fixes Completed (Moving to Phase 2: Frontend)
+- **Test Suite Results**: 95 tests passing, 0 failing across 24 test suites.
 
 ---
 
@@ -13,9 +13,10 @@
 - [x] **Phase C**: Deterministic rules engine (`server/src/engine/rules/*`, `compare.js`) with positive/negative/uncertain unit tests (`server/test/rules.test.js`, `server/test/compare.test.js`).
 - [x] **Phase D**: Backend foundation (config, urlGuard, in-memory limiter, Mongoose models, Express app & routes, route/guard tests: `server/test/urlGuard.test.js`, `server/test/limiter.test.js`, `server/test/routes.test.js`).
 - [x] **Phase E**: TinyFish clients & orchestration (agentClient with SSE and polling recovery, fetchClient with ttl:0 batching and sha256 hashing, goal generator, runAudit service: `server/test/orchestration.test.js`).
-- [ ] **Phase F**: Fixture site (`fixture/`) with 6 planted defects, clean variant, admin toggle, and verification tests.
-- [ ] **Phase G**: Frontend in `client/` (React + Vite + Tailwind, Citizen & Owner modes, Journey Graph, Evidence Explorer, comparison).
-- [ ] **Phase H**: Final documentation, cleanup, demo checklist (`README.md`, `docs/DEMO_CHECKLIST.md`).
+- [x] **Phase F / Phase 1 Backend Verification**: Fixture site (`fixture/`) with 6 planted defects, clean variant, admin toggle, server execution guard fix, server bootstrap worker wiring, and integration tests (`server/test/fixture.test.js`, `server/test/serverIntegration.test.js`).
+- [ ] **Phase 2 (Frontend)**: Frontend in `client/` (React + Vite + Tailwind, Citizen & Owner modes, Journey Graph, Evidence Explorer, comparison).
+- [ ] **Phase 3 (Integration & Verification)**: End-to-end integration of client and server.
+- [ ] **Phase 4 (Documentation & Final Demo Prep)**: Root `README.md`, `docs/DEMO_CHECKLIST.md`.
 
 ---
 
@@ -26,9 +27,9 @@ npm --prefix server test
 ```
 *Current real output:*
 ```
-ℹ tests 88
-ℹ suites 22
-ℹ pass 88
+ℹ tests 95
+ℹ suites 24
+ℹ pass 95
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
