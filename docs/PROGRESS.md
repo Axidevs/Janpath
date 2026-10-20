@@ -2,8 +2,8 @@
 
 ## Current Status & Summary
 - **Mode**: Autonomous Build Mode
-- **Current Phase**: Phase D Completed (Moving to Phase E)
-- **Test Suite Results**: 81 tests passing, 0 failing across 18 test suites.
+- **Current Phase**: Phase E Completed (Moving to Phase F)
+- **Test Suite Results**: 88 tests passing, 0 failing across 22 test suites.
 
 ---
 
@@ -12,7 +12,7 @@
 - [x] **Phase B**: Schemas (`shared/schemas.js` with Zod, `server/src/tinyfish/outputSchema.js` hand-crafted JSON Schema), sample audit data (`shared/sample-audit.json`), and schema tests (`server/test/schemas.test.js`).
 - [x] **Phase C**: Deterministic rules engine (`server/src/engine/rules/*`, `compare.js`) with positive/negative/uncertain unit tests (`server/test/rules.test.js`, `server/test/compare.test.js`).
 - [x] **Phase D**: Backend foundation (config, urlGuard, in-memory limiter, Mongoose models, Express app & routes, route/guard tests: `server/test/urlGuard.test.js`, `server/test/limiter.test.js`, `server/test/routes.test.js`).
-- [ ] **Phase E**: TinyFish clients & orchestration (agentClient, fetchClient, goal generator, runAudit service with mock injection for tests).
+- [x] **Phase E**: TinyFish clients & orchestration (agentClient with SSE and polling recovery, fetchClient with ttl:0 batching and sha256 hashing, goal generator, runAudit service: `server/test/orchestration.test.js`).
 - [ ] **Phase F**: Fixture site (`fixture/`) with 6 planted defects, clean variant, admin toggle, and verification tests.
 - [ ] **Phase G**: Frontend in `client/` (React + Vite + Tailwind, Citizen & Owner modes, Journey Graph, Evidence Explorer, comparison).
 - [ ] **Phase H**: Final documentation, cleanup, demo checklist (`README.md`, `docs/DEMO_CHECKLIST.md`).
@@ -26,9 +26,9 @@ npm --prefix server test
 ```
 *Current real output:*
 ```
-ℹ tests 81
-ℹ suites 18
-ℹ pass 81
+ℹ tests 88
+ℹ suites 22
+ℹ pass 88
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
