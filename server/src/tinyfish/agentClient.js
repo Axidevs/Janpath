@@ -42,8 +42,8 @@ export function createAgentClient(options = {}) {
         url,
         goal,
         output_schema: outputSchema || tinyfishOutputSchema,
-        browser_profile: {},
-        proxy_config: { country_code: 'IN' },
+        browser_profile: 'lite',
+        proxy_config: { enabled: false },
         agent_config: { max_duration_seconds: 120 }
       };
 
@@ -154,7 +154,13 @@ export function createAgentClient(options = {}) {
     async pollRun(runId, { onEvent, recordedEvents = [], signal } = {}) {
       for (let attempt = 1; attempt <= maxPollingAttempts; attempt++) {
         if (signal?.aborted) {
-          throw new Error('TinyFish polling aborted by client');
+          throw new Error(
+  `TinyFish Agent run failed: ${
+    typeof runData.error === 'string'
+      ? runData.error
+      : JSON.stringify(runData.error ?? runData)
+  }`
+);
         }
 
         const pollRes = await fetchFn(`${baseUrl}/v1/runs/${runId}`, {

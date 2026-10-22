@@ -64,7 +64,6 @@ export const tinyfishOutputSchema = {
           },
           url: {
             type: 'string',
-            format: 'uri'
           },
           verbatim_quote: {
             type: 'string'
@@ -76,7 +75,6 @@ export const tinyfishOutputSchema = {
       type: 'array',
       items: {
         type: 'string',
-        format: 'uri'
       }
     },
     click_path: {

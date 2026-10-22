@@ -27,6 +27,30 @@ export function computeSha256(text) {
   return crypto.createHash('sha256').update(text || '', 'utf8').digest('hex');
 }
 
+function normalizeLinks(links = []) {
+  if (!Array.isArray(links)) return [];
+
+  return links
+    .map((link) => {
+      if (typeof link === 'string') {
+        return { text: link, href: link };
+      }
+
+      if (!link || typeof link !== 'object') return null;
+
+      const href = link.href || link.url || link.target_url || '';
+      const text = link.text || link.label || link.title || link.anchor_text || '';
+
+      if (typeof href !== 'string' || !href.trim()) return null;
+
+      return {
+        text: String(text),
+        href: href.trim()
+      };
+    })
+    .filter(Boolean);
+}
+
 /**
  * Chunks array into sub-arrays of at most chunkSize.
  */
@@ -71,7 +95,8 @@ export function createFetchClient(options = {}) {
             body: JSON.stringify({
               urls: batch,
               ttl: 0, // Mandatory: never cache for verification
-              format: 'text'
+              format: 'text',
+               links: true
             })
           });
 
@@ -120,12 +145,14 @@ export function createFetchClient(options = {}) {
             } else if (resultMap.has(url)) {
               const res = resultMap.get(url);
               const text = res.text || res.content || '';
+
               resultsMap.set(url, {
                 url,
                 text,
                 charCount: text.length,
                 hash: computeSha256(text),
                 status: res.status || 200,
+                links: normalizeLinks(res.links),
                 error: null
               });
             } else {
